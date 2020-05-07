@@ -1,173 +1,134 @@
 /*
- Navicat Premium Data Transfer
+SQLyog Enterprise v12.09 (64 bit)
+MySQL - 5.6.25 : Database - blog
+*********************************************************************
+*/
 
- Source Server         : localhost_3306
- Source Server Type    : MySQL
- Source Server Version : 50515
- Source Host           : localhost:3306
- Source Schema         : blog
+/*!40101 SET NAMES utf8 */;
 
- Target Server Type    : MySQL
- Target Server Version : 50515
- File Encoding         : 65001
+/*!40101 SET SQL_MODE=''*/;
 
- Date: 24/03/2020 18:22:54
-*/
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`blog` /*!40100 DEFAULT CHARACTER SET latin1 */;
 
-SET NAMES utf8;
-SET FOREIGN_KEY_CHECKS = 0;
+USE `blog`;
 
--- ----------------------------
--- Table structure for t_blog
--- ----------------------------
+/*Table structure for table `t_blog` */
+
 DROP TABLE IF EXISTS `t_blog`;
-CREATE TABLE `t_blog`  (
+
+CREATE TABLE `t_blog` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `content` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
-  `first_picture` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `flag` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `views` int(11) NULL DEFAULT NULL,
-  `appreciation` int(11) NOT NULL DEFAULT 0,
-  `share_statement` int(11) NOT NULL DEFAULT 0,
-  `commentabled` int(11) NOT NULL DEFAULT 0,
-  `published` int(11) NOT NULL DEFAULT 0,
-  `recommend` int(11) NOT NULL DEFAULT 0,
-  `create_time` datetime NULL DEFAULT NULL,
-  `update_time` datetime NULL DEFAULT NULL,
-  `type_id` bigint(20) NULL DEFAULT NULL,
-  `user_id` bigint(20) NULL DEFAULT NULL,
-  `description` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
-  `tag_ids` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `content` text,
+  `first_picture` varchar(255) DEFAULT NULL,
+  `flag` varchar(255) DEFAULT NULL,
+  `views` int(11) DEFAULT NULL,
+  `appreciation` int(11) NOT NULL DEFAULT '0',
+  `share_statement` int(11) NOT NULL DEFAULT '0',
+  `commentabled` int(11) NOT NULL DEFAULT '0',
+  `published` int(11) NOT NULL DEFAULT '0',
+  `recommend` int(11) NOT NULL DEFAULT '0',
+  `create_time` datetime DEFAULT NULL,
+  `update_time` datetime DEFAULT NULL,
+  `type_id` bigint(20) DEFAULT NULL,
+  `user_id` bigint(20) DEFAULT NULL,
+  `description` text,
+  `tag_ids` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
--- ----------------------------
--- Records of t_blog
--- ----------------------------
-INSERT INTO `t_blog` VALUES (1, 'maven中静态资源的过滤', '# maven中静态资源的过滤\r\n\r\npom.xml文件中加入下面配置\r\n\r\n### 可以过滤java和resources文件夹里面所有的的.properties和.xml文件\r\n**directory：指定资源所在的目录，目录的路径是相对于pom.xml文件的\r\nincludes：指定要包含哪些文件**\r\n**filtering标签中：false表示不过滤，true表示过滤**\r\n\r\n```java\r\n    <build>\r\n        <resources>\r\n            <resource>\r\n                <directory>src/main/java</directory>\r\n                <includes>\r\n                    <include>**/*.properties</include>\r\n                    <include>**/*.xml</include>\r\n                </includes>\r\n                <filtering>false</filtering>\r\n            </resource>\r\n            <resource>\r\n                <directory>src/main/resources</directory>\r\n                <includes>\r\n                    <include>**/*.properties</include>\r\n                    <include>**/*.xml</include>\r\n                </includes>\r\n                <filtering>false</filtering>\r\n            </resource>\r\n        </resources>\r\n    </build>\r\n```\r\n', 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1584367888190&di=7855ff350e759b4b3de8c614978673b4&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201612%2F07%2F20161207154722_Cmce5.thumb.400_0.gif', '原创', 0, 1, 1, 1, 1, 1, '2020-03-12 08:25:47', '2020-03-13 11:56:19', 3, 1, 'pom.xml文件中加入下面配置\r\n可以过滤java和resources文件夹里面所有的的.properties和.xml文件', '4');
-INSERT INTO `t_blog` VALUES (2, '使用System.out.format()格式化输出', '#### JDK5.0允许java像C语言那样直接用printf()方法来格式化输出\r\n####  System.out.format()功能与printf()一样，可以使用%d,%f等参数。\r\n使用System.out.format()完成**左对齐，补0，千位分隔符，小数点位数，本地化表达**\r\n```java\r\npublic class TestNumber {\r\n   \r\n    public static void main(String[] args) {\r\n        int year = 2020;\r\n        //左对齐，补0，千位分隔符，小数点位数，本地化表达\r\n        \r\n      //直接打印数字\r\n        System.out.println(year);\r\n          \r\n        //直接打印数字\r\n        System.out.format(\"%d%n\",year);\r\n        //总长度是8,默认右对齐\r\n        System.out.format(\"%8d%n\",year);\r\n        //总长度是8,左对齐\r\n        System.out.format(\"%-8d%n\",year);\r\n        //总长度是8,不够补0\r\n        System.out.format(\"%08d%n\",year);\r\n        //千位分隔符\r\n        System.out.format(\"%,8d%n\",year*10000);\r\n  \r\n        //保留5位小数\r\n        System.out.format(\"%.5f%n\",Math.PI);\r\n          \r\n        //不同国家的千位分隔符\r\n        System.out.format(Locale.FRANCE,\"%,.2f%n\",Math.PI*10000);\r\n        System.out.format(Locale.US,\"%,.2f%n\",Math.PI*10000);\r\n        System.out.format(Locale.UK,\"%,.2f%n\",Math.PI*10000);\r\n          \r\n    }\r\n}\r\n```\r\n输出结果：\r\n\r\n```java\r\n2020\r\n2020\r\n    2020\r\n2020    \r\n00002020\r\n20,200,000\r\n3.14159\r\n31?415,93\r\n31,415.93\r\n31,415.93\r\n```\r\n', 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1584368822685&di=19855856bbd158b52926a49b51e876c0&imgtype=0&src=http%3A%2F%2Fwx2.sinaimg.cn%2Fcrop.0.4.1280.711%2F70745653ly1fvuflwe10zj20zk0k0n06.jpg', '原创', 0, 1, 1, 1, 1, 1, '2019-03-12 13:42:14', '2019-03-13 12:00:08', 6, 1, 'JDK5.0允许java像C语言那样直接用printf()方法来格式化输出\r\nSystem.out.format()功能与printf()一样，可以使用%d,%f等参数。\r\n\r\n使用System.out.format()完成左对齐，补0，千位分隔符，小数点位数，本地化表达', '7');
-INSERT INTO `t_blog` VALUES (3, 'Springboot中PageHelper 分页查询使用方法', '### 一：导入依赖\r\n\r\n```java\r\n<dependency>\r\n	<groupId>com.github.pagehelper</groupId>\r\n	<artifactId>pagehelper-spring-boot-starter</artifactId>\r\n	<version>1.2.13</version>\r\n</dependency>\r\n```\r\n### 二：配置yml文件中PageHelper的属性\r\n\r\n```java\r\npagehelper:                #分页插件\r\n  helper-dialect: mysql\r\n  reasonable: true\r\n  support-methods-arguments: true\r\n  params:\r\n```\r\n### 三：在controller类中使用，\r\n##### 1.在查询方法上调用PageHelper.startPage()方法，设置分页的页数和每页信息数，\r\n##### 2.将查询出来的结果集用PageInfo的构造函数初始化为一个分页结果对象\r\n##### 3.将分页结果对象存入model，返回前端页面\r\n```java\r\n@GetMapping(\"/types\")\r\npublic String types(@RequestParam(required = false,defaultValue = \"1\",value = \"pagenum\")int pagenum, Model model){\r\n\r\n    PageHelper.startPage(pagenum, 5);  //pagenum：页数，pagesize:每页的信息数\r\n    \r\n    List<Type> allType = typeService.getAllType(); //调用业务层查询方法\r\n    \r\n    PageInfo<Type> pageInfo = new PageInfo<>(allType); //得到分页结果对象\r\n    \r\n    model.addAttribute(\"pageInfo\", pageInfo);  //携带分页结果信息\r\n    \r\n    return \"admin/types\";  //回到前端展示页面\r\n}\r\n```\r\n### 四：前端展示分页（thymeleaf+semantic-ui）,这里ui用自己的就行，比如bootstrap或layui，主要是thymeleaf的使用。\r\n\r\n```java\r\n<table  class=\"ui compact celled teal table\">\r\n  <thead>\r\n  <tr>\r\n    <th></th>\r\n    <th>名称</th>\r\n    <th>操作</th>\r\n  </tr>\r\n  </thead>\r\n  <tbody>\r\n  <tr th:each=\"type, iterStat : ${pageInfo.list}\">\r\n    <td th:text=\"${iterStat.count}\">1</td>\r\n    <td th:text=\"${type.name}\">摸鱼方法</td>\r\n    <td>\r\n      <a href=\"#\" th:href=\"@{/admin/types/{id}/input(id=${type.id})}\" class=\"ui mini teal basic button\">编辑</a>\r\n      <a href=\"#\" th:href=\"@{/admin/types/{id}/delete(id=${type.id})}\" class=\"ui mini red basic button\">删除</a>\r\n    </td>\r\n  </tr>\r\n  </tbody>\r\n  <tfoot>\r\n  <tr>\r\n    <th colspan=\"7\">\r\n      <div class=\"ui mini pagination menu\"  >\r\n        <div class=\"item\"><a th:href=\"@{/admin/types}\">首页</a></div>\r\n        <div class=\"item\"><a th:href=\"@{/admin/types(pagenum=${pageInfo.hasPreviousPage}?${pageInfo.prePage}:1)}\">上一页</a></div>\r\n        <div class=\"item\"><a th:href=\"@{/admin/types(pagenum=${pageInfo.hasNextPage}?${pageInfo.nextPage}:${pageInfo.pages})}\">下一页</a></div>\r\n        <div class=\"item\"><a th:href=\"@{/admin/types(pagenum=${pageInfo.pages})}\">尾页</a></div>\r\n      </div>\r\n      <a href=\"#\" th:href=\"@{/admin/types/input}\" class=\"ui mini right floated teal basic button\">新增</a>\r\n    </th>\r\n  </tr>\r\n  </tfoot>\r\n</table>\r\n\r\n<div class=\"ui segment m-inline-block\">\r\n  <p >当前第<span th:text=\"${pageInfo.pageNum}\"></span>页，总<span th:text=\"${pageInfo.pages}\"></span>页，共<span th:text=\"${pageInfo.total}\"></span>条记录</p>\r\n</div>\r\n```\r\n### 五：效果展示（pagesize设置为5的效果）\r\n![在这里插入图片描述](https://img-blog.csdnimg.cn/20200310105006168.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyODA0NzM2,size_16,color_FFFFFF,t_70)\r\n', 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1584368536828&di=460fea188bd56a9f691d87e56622b891&imgtype=0&src=http%3A%2F%2Ftc.sinaimg.cn%2Fmaxwidth.800%2Ftc.service.weibo.com%2Fp3_pstatp_com%2F5ffc4f5b05b15c5642dd59cc7341cc71.jpg', '原创', 0, 1, 0, 1, 1, 1, '2019-03-14 17:05:58', '2020-03-21 11:45:10', 1, 1, '1.在查询方法上调用PageHelper.startPage()方法，设置分页的页数和每页信息数，\r\n2.将查询出来的结果集用PageInfo的构造函数初始化为一个分页结果对象\r\n3.将分页结果对象存入model，返回前端页面', '5,4');
-INSERT INTO `t_blog` VALUES (4, 'thymeleaf语法及使用', '## 模板引擎\r\n\r\n简介：模板引擎(这里特指用于Web开发的模板引擎)是为了使用户界面与业务数据(内容)分离而产生的,它可以生成特定格式的文档，用于网站的模板引擎就会生成一个标准的HTML文档。\r\n模板引擎的思想：\r\n![在这里插入图片描述](https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pbWFnZXMuY25ibG9ncy5jb20vY25ibG9nc19jb20venltMTk5OS8xNjQ1NDE2L29fMjAwMjExMDk1OTQxMTQucG5n?x-oss-process=image/format,png)\r\nThymeleaf就是SpringBoot给我们推荐的一种模板引擎！\r\n\r\n## Thymeleaf模板引擎\r\n\r\n#### 1.使用Thymeleaf之前的步骤\r\n\r\n 1. Thymeleaf 官网：https://www.thymeleaf.org/\r\n 2. springboot项目直接引入依赖：\r\n```java\r\n<dependency>\r\n   <groupId>org.springframework.boot</groupId>\r\n   <artifactId>spring-boot-starter-thymeleaf</artifactId>\r\n</dependency>\r\n```\r\n3.非springboot项目直接引入依赖：\r\n\r\n```java\r\n<dependency>\r\n    <groupId>org.thymeleaf</groupId>\r\n    <artifactId>thymeleaf</artifactId>\r\n    <version>2.1.4</version>\r\n</dependency>\r\n```\r\n  4.在thymeleaf的配置类ThymeleafProperties中我们可以发现：thymeleaf配置的默认前缀为：\"classpath:/templates/\"，默认后缀为：\".html\"，只要把html页面放在这个路径下，\r\n\r\nthymeleaf就可以帮我们自动渲染。\r\n\r\n```java\r\npublic class ThymeleafProperties {\r\n    private static final Charset DEFAULT_ENCODING;\r\n    public static final String DEFAULT_PREFIX = \"classpath:/templates/\";\r\n    public static final String DEFAULT_SUFFIX = \".html\";\r\n    private boolean checkTemplate = true;\r\n    private boolean checkTemplateLocation = true;\r\n    private String prefix = \"classpath:/templates/\";\r\n    private String suffix = \".html\";\r\n    private String mode = \"HTML\";\r\n...\r\n}\r\n```\r\n如图为用idea创建的springboot的项目结构：将html页面放在resources/templates中即可。\r\n![在这里插入图片描述](https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pbWFnZXMuY25ibG9ncy5jb20vY25ibG9nc19jb20venltMTk5OS8xNjQ1NDE2L29fMjAwMjExMDk1OTExMTMucG5n?x-oss-process=image/format,png)\r\n#### 2.Thymeleaf语法简单使用（th:text, th:utext, th:each）\r\n编写一个controller实现跳转到一个html页面，通过Model对象携带数据\r\n\r\n```java\r\n@Controller\r\npublic class HelloController {\r\n\r\n    @RequestMapping(\"/success\")\r\n    public String success(Model model){\r\n        //存入数据\r\n        model.addAttribute(\"msg\",\"<h1>Hello</h1>\");\r\n        model.addAttribute(\"users\", Arrays.asList(\"小红\", \"小米\",\"小白\"));\r\n        //classpath:/templates/success.html\r\n        return \"success\";\r\n    }\r\n}\r\n```\r\nsuccess.html\r\n\r\n```java\r\n<!DOCTYPE html>\r\n<html lang=\"en\" xmlns:th=\"http://www.thymeleaf.org\">\r\n<head>\r\n    <meta charset=\"UTF-8\">\r\n    <title>Title</title>\r\n</head>\r\n<body>\r\n    <h1>success</h1>\r\n\r\n    <!--Thymeleaf语法：th:text就是将div中的内容设置为它指定的值-->\r\n\r\n    <div th:text=\"${msg}\">你好</div>\r\n    <!--utext：会解析html，显示相应的效果-->\r\n    <div th:utext=\"${msg}\">你好</div>\r\n    <!--each：遍历-->\r\n    <h3 th:each=\"user:${users}\" th:text=\"${user}\"></h3>\r\n\r\n</body>\r\n</html>\r\n```\r\n通过http://localhost:8080/success路径访问到success.html页面，同时成功显示数据：![在这里插入图片描述](https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pbWFnZXMuY25ibG9ncy5jb20vY25ibG9nc19jb20venltMTk5OS8xNjQ1NDE2L29fMjAwMjExMTEyOTE3MTUucG5n?x-oss-process=image/format,png)\r\n#### 3.Thymeleaf基本语法（属性和表达式）\r\n**Thymeleaf标准表达式**\r\n   \r\n\r\n 1. 变量表达式：**${ }**：用于前端获取后端传递的变量值\r\n\r\n   \r\n\r\n 1. 选择表达式：***{ }**：用于绑定一个对象的属性\r\n\r\n   \r\n\r\n 1. URL链接表达式：**@{ }**：用于链接\r\n\r\n    \r\n\r\n 1. 条件表达式：**三目运算符（表达式 ？值（then）：值（else））**\r\n\r\n    \r\n\r\n\r\n    \r\n**Thymeleaf属性标签：**\r\n![在这里插入图片描述](https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pbWFnZXMuY25ibG9ncy5jb20vY25ibG9nc19jb20venltMTk5OS8xNjQ1NDE2L29fMjAwMjExMTEzMTAxMTYucG5n?x-oss-process=image/format,png)\r\n\r\n \r\n\r\n', 'http://n.sinaimg.cn/sinacn20111/600/w1920h1080/20190331/0f41-huxwryw5226043.jpg', '原创', 0, 1, 1, 1, 1, 1, '2020-03-14 17:01:31', '2020-03-14 17:01:31', 1, 1, '简介：模板引擎(这里特指用于Web开发的模板引擎)是为了使用户界面与业务数据(内容)分离而产生的,它可以生成特定格式的文档，用于网站的模板引擎就会生成一个标准的HTML文档。Thymeleaf就是SpringBoot给我们推荐的一种模板引擎！', '5,3');
-INSERT INTO `t_blog` VALUES (5, '利用Set集合去重', '### Set集合特点:\r\n#### ①     一次只存一个元素,\r\n\r\n#### ②     不能存储重复的元素\r\n\r\n#### ③     存储顺序和取出来的顺序不一定一致不能存储重复的元素\r\n\r\n可以利用②这一特点，完成去重的功能。\r\n#### 一：Set集合去掉List集合中重复元素\r\n\r\n```java\r\npublic static void main(String[] args) {\r\n	\r\n	//利用set集合 去除ArrayList集合中的重复元素\r\n	ArrayList<String> list = new ArrayList<>();\r\n	list.add(\"1\");\r\n    list.add(\"1\");\r\n    list.add(\"2\");\r\n    list.add(\"2\");\r\n    list.add(\"3\");\r\n    list.add(\"3\");\r\n    list.add(\"4\");\r\n    list.add(\"4\");\r\n    System.out.println(\"去重前的List集合：\"+list);\r\n    \r\n	Set<String> set = new HashSet<>();\r\n	set.addAll(list);\r\n	System.out.println(\"Set集合：\"+set);\r\n	\r\n	list.clear();            // 清空原有元素 放入被list去重后的元素\r\n	list.addAll(set);\r\n	System.out.println(\"去重后的List集合：\"+list);\r\n}\r\n```\r\n运行结果：\r\n\r\n```java\r\n去重前的List集合：[1, 1, 2, 2, 3, 3, 4, 4]\r\nSet集合：[1, 2, 3, 4]\r\n去重后的List集合：[1, 2, 3, 4]\r\n```\r\n\r\n#### 二：Set集合去掉字符串中重复子串\r\n\r\n```java\r\npublic static void main(String[] args) {\r\n	String str = \"aaab\";\r\n	System.out.println(\"字符串aaab 有非空子串a, b, aa, ab, aaa, aab, aaab，一共 7 个\");\r\n	\r\n	Set<String> set = new HashSet<String>();\r\n	for (int step = 0; step <= str.length() - 1; step++) {\r\n		//扫描全部子串\r\n		for (int begin = 0, end = 1 + step; end <= str.length(); begin++, end++) {     \r\n			String kid = str.substring(begin, end);   //截取字符串子串\r\n			set.add(kid);			//将子串放入set集合，完成去重\r\n		}\r\n	}\r\n	System.out.println(\"去除重复子串后的全部子串有：\"+set.size()+\"个\");\r\n	System.out.println(\"分别是：\" + set);\r\n}\r\n```\r\n运行结果：\r\n```java\r\n字符串aaab 有非空子串a, b, aa, ab, aaa, aab, aaab，一共 7 个\r\n去除重复子串后的全部子串有：7个\r\n分别是：[aa, aaa, a, ab, b, aab, aaab]\r\n```\r\n\r\n', 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1584366026862&di=62fd65c3b51d4c6b8052f954ef561268&imgtype=0&src=http%3A%2F%2Fimg.article.pchome.net%2F00%2F38%2F63%2F92%2Fpic_lib%2Fs960x639%2F08s960x639.jpg', '原创', 0, 1, 1, 1, 1, 1, '2020-03-13 11:21:46', '2020-03-14 16:19:35', 1, 1, 'Set集合特点:\r\n① 一次只存一个元素,\r\n② 不能存储重复的元素\r\n③ 存储顺序和取出来的顺序不一定一致不能存储重复的元素', '6');
-INSERT INTO `t_blog` VALUES (6, 'mybatis根据日期查询、查询日期并返回', '### 方法：\r\n\r\n#### 1.查询日期，返回日期字符串\r\n```handlebars\r\n//查询所有博客对应的年份，返回一个集合\r\nList<String> findGroupYear();  \r\n```\r\n#### 2.根据日期查询\r\n```handlebars\r\n//根据年份查询博客信息\r\nList<Blog> findByYear(@Param(\"year\") String year);  \r\n```\r\n\r\n\r\n### mybatis映射:\r\n\r\n\r\n```java\r\n<select id=\"findGroupYear\" resultType=\"String\">\r\n    select DATE_FORMAT(b.update_time, \'%Y\') from t_blog b\r\n</select>\r\n\r\n\r\n<select id=\"findByYear\" resultType=\"Blog\">\r\n    select b.title, b.update_time, b.id, b.flag\r\n    from t_blog b\r\n    where DATE_FORMAT(b.update_time, \'%Y\') = #{year}\r\n</select>\r\n```\r\n\r\n## 总结：\r\n**DATE_FORMAT(date,format)：date表示日期，format表示显示的格式。**\r\n**该方法可以把date类型转换为String类型的字符串**\r\n', 'http://p.qpic.cn/dnfbbspic/0/dnfbbs_dnfbbs_dnf_gamebbs_qq_com_forum_202002_04_082156ifotspmtuzcffycn.jpg/0', '原创', 0, 1, 1, 1, 1, 1, '2020-03-21 11:54:41', '2020-03-21 15:33:02', 5, 1, 'mybatis根据日期查询、查询日期并返回\r\n方法：\r\n1.查询日期，返回日期字符串', '4');
-INSERT INTO `t_blog` VALUES (10, '蓝桥杯：基础练习 01字串（java）', '## 试题 基础练习 01字串\r\n  \r\n### 资源限制\r\n时间限制：1.0s   内存限制：256.0MB\r\n### 问题描述\r\n对于长度为5位的一个01串，每一位都可能是0或1，一共有32种可能。它们的前几个是：\r\n\r\n00000\r\n\r\n00001\r\n\r\n00010\r\n\r\n00011\r\n\r\n00100\r\n\r\n请按从小到大的顺序输出这32种01串。\r\n\r\n### 输入格式\r\n本试题没有输入。\r\n### 输出格式\r\n输出32行，按从小到大的顺序每行一个长度为5的01串。\r\n### 样例输出\r\n00000\r\n00001\r\n00010\r\n00011\r\n<以下部分省略>\r\n\r\n#### 思路：\r\n**使用Integer.toBinaryString()将十进制整数转换为二进制字符串，再判断长度是否能整除5，在前面加0输出**\r\n\r\n```java\r\npublic class 字串01 {\r\n	public static void main(String[] args) {\r\n		\r\n		for(int i = 0; i <= 31; i++) {\r\n			String s = Integer.toBinaryString(i);\r\n			int len = s.length();\r\n			switch(len % 5) {\r\n			case 1: s = \"0000\" + s;break;\r\n			case 2: s = \"000\" + s;break;\r\n			case 3: s = \"00\" + s;break;\r\n			case 4: s = \"0\" + s;break;\r\n			case 0: break;\r\n			}\r\n			System.out.println(s);\r\n		}\r\n	}\r\n}\r\n```\r\n\r\n**另一种方法，不用判断加0，也可以直接使用printf输出指定格式的整数：**\r\n```java\r\npublic class 字串01 {\r\n	public static void main(String[] args) {\r\n		\r\n		for(int i = 0; i <= 31; i++) {\r\n			String s = Integer.toBinaryString(i);\r\n			int n = Integer.parseInt(s);\r\n			System.out.printf(\"%05d\\n\",n);\r\n		}\r\n	}\r\n}\r\n```\r\n\r\n', 'http://5b0988e595225.cdn.sohucs.com/images/20190112/12a825d7c0f94223a0b1fc3dcddc6570.jpeg', '原创', 0, 1, 1, 1, 1, 1, '2020-03-21 16:19:41', '2020-03-21 16:19:41', 6, 1, '问题描述\r\n\r\n对于长度为5位的一个01串，每一位都可能是0或1，一共有32种可能。它们的前几个是：\r\n\r\n00000\r\n\r\n00001\r\n\r\n00010\r\n\r\n00011\r\n\r\n00100\r\n\r\n请按从小到大的顺序输出这32种01串。', '7');
-INSERT INTO `t_blog` VALUES (11, '安东尼经典语录', '我怕你说话，我怕你沉默。 \r\n我怕你来到，我怕你离开。 \r\n我怕抓紧你，我怕放走你。 \r\n我怕你看到我，我怕你无视我。 \r\n我怕你想念我，我怕你忘记我。 \r\n我怕你过于依赖我，我怕你不再需要我。 \r\n我怕你爱我，我怕你不爱我。 \r\n我怕你太爱我，我怕你不够爱我。\r\n\r\n不管昨夜经历了怎样的泣不成声 早晨醒来这个城市依然车水马龙\r\n\r\n不要让那个喜欢你的人 撕心裂肺地为你哭那么一次 因为 你能把他伤害到那个样子的机会 只有一次 那一次以后 你就从不可或缺的人变成可有可无的人了 即使他还爱你 可是 总有一些东西真的改变了\r\n\r\n应该趁着年轻 和喜欢的人一起 制造些比夏天还要温暖的事\r\n\r\n风不懂云的漂泊。天不懂雨的落魄。眼不懂泪的懦弱。所以你不懂我的选择。也可以不懂我的难过。不是每一个人都一定要快乐。不是每一种痛都一定要诉说\r\n\r\n后来，我终于能接受，我们不会再在一起这个实事。我想我唯一能做的就是，继承那些，你拥有的让我着迷的品质，好好地生活下去。\r\n\r\n如果你喜欢的人不喜欢你，那么就算全世界的人都喜欢你，还是会觉得孤独吧。If the person you like doesn\'t like you ,wouldn\'t it still be lonely even if the whole world loves you.\r\n\r\n那些 我们一直惴惴不安 又充满好奇的未来 会在心里隐隐约约地觉得它们是明亮的\r\n\r\n人生，总会有不期而遇的温暖，和生生不息的希望。\r\n\r\n其实我一直相信 等你出现的时候我就知道是你\r\n\r\n我谈过最长的恋爱，就是自恋，我爱自己，没有情敌。\r\n\r\n不知道如何爱你，看着你，是我唯一的方式。I don\'t know how to love you ,looking at you is the only way i know\r\n\r\n我所知道的关于你的事情 就只有天气预报了\r\n\r\n我觉得 我们俩之间就像喝酒 我干杯 你随意\r\n\r\n玫瑰当然爱小王子 \r\n不过当你真的喜欢一个人的时候 就会想很多 会很容易办蠢事 说傻话 \r\n更别说 那个人像小王子那么可爱 \r\n玫瑰很温柔 其实她只是不知所措罢了 \r\n至于小王子 他还太小了 不明白玫瑰的温柔 \r\n他的离开也许并不是坏事\r\n\r\n最喜欢早上，好像什么都可以重新开始，中午的时候就开始觉得忧伤，晚上最难度过。\r\n\r\nI know that one day I will forgot you. \r\nI don\'t have anticipation. \r\nI don\'t feel sad. \r\nI just know, that\'s all.\r\n\r\n长大了 总有那么一两次机会 你会为了喜欢的人 跑那么一跑 因为 如果是对的人的话 走路真的来不及\r\n\r\n很久以后，那些好极了和糟透了的时刻我们都会忘记，唯一真实和难忘的是，我们抬头挺胸走过的人生。\r\n\r\n不论是我的世界车水马龙繁华盛世 还是它们都瞬间消失化为须臾 我都会坚定地走向你 不慌张 不犹豫', 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1584886233933&di=984c5adffbeee9133453b53cdfaa912f&imgtype=0&src=http%3A%2F%2Fd.hiphotos.baidu.com%2Fzhidao%2Fpic%2Fitem%2F4ec2d5628535e5dd24d1534b74c6a7efcf1b62a1.jpg', '原创', 0, 1, 1, 1, 1, 1, '2020-03-22 19:36:45', '2020-03-22 19:36:45', 3, 1, '不论是我的世界车水马龙繁华盛世\r\n 还是它们都瞬间消失化为须臾 \r\n我都会坚定地走向你 不慌张 不犹豫', '8');
+/*Data for the table `t_blog` */
 
--- ----------------------------
--- Table structure for t_blog_tags
--- ----------------------------
+insert  into `t_blog`(`id`,`title`,`content`,`first_picture`,`flag`,`views`,`appreciation`,`share_statement`,`commentabled`,`published`,`recommend`,`create_time`,`update_time`,`type_id`,`user_id`,`description`,`tag_ids`) values (13,'get和post的区别','Get和Post区别\r\n1. Get是不安全的，因为在传输过程，数据被放在请求的URL中；Post的所有操作对用户来说都是不可见的。\r\n2. Get传送的数据量较小，这主要是因为受URL长度限制；Post传送的数据量较大，一般被默认为不受限制。\r\n3. Get限制Form表单的数据集的值必须为ASCII字符；而Post支持整个ISO10646字符集。\r\n4. Get执行效率却比Post方法好。Get是form提交的默认方法。\r\n5. GET产生一个TCP数据包；POST产生两个TCP数据包。（非必然，客户端可灵活决定）','https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1588672712&di=cd884842cb9acbcd8586bb85bdad1964&src=http://p.ananas.chaoxing.com/star3/733_434/56cbbf4fe4b0e85354cd1249.jpg','',0,0,0,0,1,1,'2020-05-05 18:00:03','2020-05-05 18:05:55',7,2,'Get和Post两个好基友','9'),(14,'HTTP请求的全过程','Http请求的完全过程\r\n1. 浏览器根据域名解析IP地址（DNS）,并查DNS缓存\r\n2. 浏览器与WEB服务器建立一个TCP连接\r\n3. 浏览器给WEB服务器发送一个HTTP请求（GET/POST）：一个HTTP请求报文由请求行（requestline）、请求头部（headers）、空行（blank line）和请求数据（request body）4个部分组成。\r\n4. 服务端响应HTTP响应报文，报文由状态行（status line）、相应头部（headers）、空行（blankline）和响应数据（response body）4个部分组成。\r\n5. 浏览器解析渲染','https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1588698354932&di=4477c9fff84e81748e8a4550a8bf6230&imgtype=0&src=http%3A%2F%2F5b0988e595225.cdn.sohucs.com%2Fimages%2F20200417%2F489200b7745a4bb1befde8811869f16b.jpeg','',0,0,0,0,0,1,'2020-05-05 18:20:55','2020-05-05 22:18:07',7,2,'这个得记住哟','9'),(15,'Tcp和Udp的区别','tcp和udp区别\r\n1. TCP面向连接，UDP是无连接的，即发送数据之前不需要建立连接。\r\n2. TCP提供可靠的服务。也就是说，通过TCP连接传送的数据，无差错，不丢失，不重复，且按序到\r\n达;UDP尽最大努力交付，即不保证可靠交付。\r\n3. TCP面向字节流，实际上是TCP把数据看成一连串无结构的字节流，UDP是面向报文的，UDP没有\r\n拥塞控制，因此网络出现拥塞不会使源主机的发送速率降低（对实时应用很有用，如IP电话，实时\r\n视频会议等）\r\n4. 每一条TCP连接只能是点到点的，UDP支持一对一，一对多，多对一和多对多的交互通信。\r\n5. TCP首部开销20字节，UDP的首部开销小，只有8个字节。\r\n6. TCP的逻辑通信信道是全双工的可靠信道，UDP则是不可靠信道。','https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2872088671,1183626711&fm=26&gp=0.jpg','',0,0,0,0,1,1,'2020-05-05 19:32:50','2020-05-05 19:32:50',7,2,'tcp和udp','9'),(16,'Tcp和Udp的优缺点','tcp和udp的优点\r\nTCP的优点： 可靠，稳定 TCP的可靠体现在TCP在传递数据之前，会有三次握手来建立连接，而且在数据传递时，有确认、窗口、重传、拥塞控制机制，在数据传完后，还会断开连接用来节约系统资源。 \r\n\r\n\r\nTCP的缺点： 慢，效率低，占用系统资源高，易被攻击 TCP在传递数据之前，要先建连接，这会消耗时间，而且在数据传递时，确认机制、重传机制、拥塞控制机制等都会消耗大量的时间，而且要在每台设备上维护所有的传输连接，事实上，每个连接都会占用系统的CPU、内存等硬件资源。 而且，因为TCP有确认机制、三次握手机制，这些也导致TCP容易被人利用，实现DOS、DDOS、CC等攻击。\r\n\r\n\r\nUDP的优点： 快，比TCP稍安全 UDP没有TCP的握手、确认、窗口、重传、拥塞控制等机制，UDP是一个无状态的传输协议，所以它在传递数据时非常快。没有TCP的这些机制，UDP较TCP被攻击者利用的漏洞就要少一些。但UDP也是无法避免攻击的，比如：UDP Flood攻击…… \r\n\r\n\r\nUDP的缺点： 不可靠，不稳定 因为UDP没有TCP那些可靠的机制，在数据传递时，如果网络质量不好，就会很容易丢包。 \r\n\r\n\r\n什么时候应该使用TCP： 当对网络通讯质量有要求的\r\n时候，比如：整个数据要准确无误的传递给对方，这往往用于一些要求可靠的应用，比如HTTP、HTTPS、FTP等传输文件的协议，POP、SMTP等邮件传输的协议。 在日常生活中，常见使用TCP协议的应用如下： 浏览器，用的HTTP FlashFXP，用的FTP Outlook，用的POP、SMTP Putty，用的Telnet、SSH QQ文件传输。\r\n\r\n\r\n什么时候应该使用UDP： 当对网络通讯质量要求不高的时候，要\r\n求网络通讯速度能尽量的快，这时就可以使用UDP。 比如，日常生活中，常见使用UDP协议的应用如下： QQ语音 QQ视频 TFTP。','https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1668803511,3546994573&fm=11&gp=0.jpg','',0,0,0,0,1,1,'2020-05-05 22:13:24','2020-05-05 22:15:51',7,2,'tcp和udp','9'),(17,'三次握手和四次挥手','# 三次握手\r\n第一次握手：建立连接时，客户端发送syn包（syn=x）到服务器，并进入SYN_SENT状态，等待服务器确认；SYN：同步序列编号（Synchronize Sequence Numbers）。\r\n第二次握手：服务器收到syn包，必须确认客户的SYN（ack=x+1），同时自己也发送一个SYN包（syn=y），即SYN+ACK包，此时服务器进入SYN_RECV状态；\r\n第三次握手：客户端收到服务器的SYN+ACK包，向服务器发送确认包ACK(ack=y+1），此包发送完毕，客户端和服务器进入ESTABLISHED（TCP连接成功）状态，完成三次握手。\r\n# 为什么不能两次握手\r\nTCP是一个双向通信协议，通信双方都有能力发送信息，并接收响应。如果只是两次握手， 至多只有连接发起方的起始序列号能被确认， 另一方选择的序列号则得不到确认\r\n# 四次挥手\r\n1. 客户端进程发出连接释放报文，并且停止发送数据。释放数据报文首部，FIN=1，其序列号为seq=u（等于前面已经传送过来的数据的最后一个字节的序号加1），此时，客户端进入FIN-WAIT-1（终止等待1）状态。 TCP规定，FIN报文段即使不携带数据，也要消耗一个序号。\r\n2. 服务器收到连接释放报文，发出确认报文，ACK=1，ack=u+1，并且带上自己的序列号seq=v，此时，服务端就进入了CLOSE-WAIT（关闭等待）状态。TCP服务器通知高层的应用进程，客户端向服务器的方向就释放了，这时候处于半关闭状态，即客户端已经没有数据要发送了，但是服务器若发送数据，客户端依然要接受。这个状态还要持续一段时间，也就是整个CLOSE-WAIT状态持续的时间。\r\n3. 客户端收到服务器的确认请求后，此时，客户端就进入FIN-WAIT-2（终止等待2）状态，等待服务器发送连接释放报文（在这之前还需要接受服务器发送的最后的数据）。\r\n4. 服务器将最后的数据发送完毕后，就向客户端发送连接释放报文，FIN=1，ack=u+1，由于在半关闭状态，服务器很可能又发送了一些数据，假定此时的序列号为seq=w，此时，服务器就进入了LAST-ACK（最后确认）状态，等待客户端的确认。\r\n5. 客户端收到服务器的连接释放报文后，必须发出确认，ACK=1，ack=w+1，而自己的序列号是seq=u+1，此时，客户端就进入了TIME-WAIT（时间等待）状态。注意此时TCP连接还没有释放，必须经过2∗∗MSL（最长报文段寿命）的时间后，当客户端撤销相应的TCB后，才进入CLOSED状态。\r\n6. 服务器只要收到了客户端发出的确认，立即进入CLOSED状态。同样，撤销TCB后，就结束了这次的TCP连接。可以看到，服务器结束TCP连接的时间要比客户端早一些\r\n# 为什么连接的时候是三次握手，关闭的时候却是四次握手\r\n因为当Server端收到Client端的SYN连接请求报文后，可以直接发送SYN+ACK报文。其中ACK报文是用来应答的，SYN报文是用来同步的。但是关闭连接时，当Server端收到FIN报文时，很可能并不会立即\r\n关闭SOCKET，所以只能先回复一个ACK报文，告诉Client端，\"你发的FIN报文我收到了\"。只有等到我Server端所有的报文都发送完了，我才能发送FIN报文，因此不能一起发送。故需要四步握手。','https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1736564644,4221342070&fm=26&gp=0.jpg','',0,0,0,0,1,1,'2020-05-05 22:23:07','2020-05-05 22:23:07',7,2,'快来了解我吧','9'),(18,'进程和线程','进程和线程\r\n1. 进程是操作系统资源分配的最小单位，线程是CPU任务调度的最小单位。一个进程可以包含多个线\r\n程，所以进程和线程都是一个时间段的描述，是CPU工作时间段的描述，不过是颗粒大小不同。\r\n2. 不同进程间数据很难共享，同一进程下不同线程间数据很易共享。\r\n3. 每个进程都有独立的代码和数据空间，进程要比线程消耗更多的计算机资源。线程可以看做轻量级\r\n的进程，同一类线程共享代码和数据空间，每个线程都有自己独立的运行栈和程序计数器，线程之\r\n间切换的开销小。\r\n4. 进程间不会相互影响，一个线程挂掉将导致整个进程挂掉。\r\n5. 系统在运行的时候会为每个进程分配不同的内存空间；而对线程而言，除了CPU外，系统不会为线\r\n程分配内存（线程所使用的资源来自其所属进程的资源），线程组之间只能共享资源。\r\n进程的组成部分\r\n进程由进程控制块（PCB）、程序段、数据段三部分组成。\r\n进程的通信方式\r\n1. 无名管道：半双工的，即数据只能在一个方向上流动，只能用于具有亲缘关系的进程之间的通信，\r\n可以看成是一种特殊的文件，对于它的读写也可以使用普通的read、write 等函数。但是它不是普\r\n通的文件，并不属于其他任何文件系统，并且只存在于内存中。\r\n2. FIFO命名管道：FIFO是一种文件类型，可以在无关的进程之间交换数据，与无名管道不同，FIFO\r\n有路径名与之相关联，它以一种特殊设备文件形式存在于文件系统中。\r\n3. 消息队列：消息队列，是消息的链接表，存放在内核中。一个消息队列由一个标识符（即队列\r\nID）来标识。\r\n4. 信号量：信号量是一个计数器，信号量用于实现进程间的互斥与同步，而不是用于存储进程间通信\r\n数据。\r\n5. 共享内存：共享内存指两个或多个进程共享一个给定的存储区，一般配合信号量使用。\r\n进程间五种通信方式的比较\r\n1. 管道：速度慢，容量有限，只有父子进程能通讯。\r\n2. FIFO：任何进程间都能通讯，但速度慢。\r\n3. 消息队列：容量受到系统限制，且要注意第一次读的时候，要考虑上一次没有读完数据的问题。\r\n4. 信号量：不能传递复杂消息，只能用来同步。\r\n5. 共享内存区：能够很容易控制容量，速度快，但要保持同步，比如一个进程在写的时候，另一个进\r\n程要注意读写的问题，相当于线程中的线程安全，当然，共享内存区同样可以用作线程间通讯，不\r\n过没这个必要，线程间本来就已经共享了同一进程内的一块内存。','https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3551370202,2453856561&fm=26&gp=0.jpg','',0,0,0,0,1,1,'2020-05-05 22:40:00','2020-05-05 22:44:57',7,2,'来了解进程线程吧','10'),(19,'死锁的必要条件和如何预防死锁','死锁的4个必要条件\r\n1. 互斥条件：一个资源每次只能被一个线程使用；\r\n2. 请求与保持条件：一个线程因请求资源而阻塞时，对已获得的资源保持不放；\r\n3. 不剥夺条件：进程已经获得的资源，在未使用完之前，不能强行剥夺；\r\n4. 循环等待条件：若干线程之间形成一种头尾相接的循环等待资源关系。\r\n如何避免（预防）死锁\r\n1. 破坏“请求和保持”条件：让进程在申请资源时，一次性申请所有需要用到的资源，不要一次一次来\r\n申请，当申请的资源有一些没空，那就让线程等待。不过这个方法比较浪费资源，进程可能经常处\r\n于饥饿状态。还有一种方法是，要求进程在申请资源前，要释放自己拥有的资源。\r\n2. 破坏“不可抢占”条件：允许进程进行抢占，方法一：如果去抢资源，被拒绝，就释放自己的资源。\r\n方法二：操作系统允许抢，只要你优先级大，可以抢到。\r\n3. 破坏“循环等待”条件：将系统中的所有资源统一编号，进程可在任何时刻提出资源申请，但所有申\r\n请必须按照资源的编号顺序提出（指定获取锁的顺序，顺序加锁）。','https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1588699792489&di=1993c3dd1f5d4153b2498083e9fea22e&imgtype=0&src=http%3A%2F%2Fimg3.imgtn.bdimg.com%2Fit%2Fu%3D3920487158%2C850099289%26fm%3D214%26gp%3D0.jpg','',0,0,0,0,1,1,'2020-05-05 22:42:25','2020-05-05 22:45:09',7,2,'你希望出现死锁吗','10');
+
+/*Table structure for table `t_blog_tags` */
+
 DROP TABLE IF EXISTS `t_blog_tags`;
-CREATE TABLE `t_blog_tags`  (
+
+CREATE TABLE `t_blog_tags` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `tag_id` bigint(20) NULL DEFAULT NULL,
-  `blog_id` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `tag_id` bigint(20) DEFAULT NULL,
+  `blog_id` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 78 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE=InnoDB AUTO_INCREMENT=96 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
--- ----------------------------
--- Records of t_blog_tags
--- ----------------------------
-INSERT INTO `t_blog_tags` VALUES (1, 3, '4');
-INSERT INTO `t_blog_tags` VALUES (2, 4, '1');
-INSERT INTO `t_blog_tags` VALUES (3, 4, '3');
-INSERT INTO `t_blog_tags` VALUES (4, 5, '3');
-INSERT INTO `t_blog_tags` VALUES (5, 5, '4');
-INSERT INTO `t_blog_tags` VALUES (6, 7, '2');
-INSERT INTO `t_blog_tags` VALUES (7, 6, '5');
-INSERT INTO `t_blog_tags` VALUES (64, 5, '3');
-INSERT INTO `t_blog_tags` VALUES (65, 4, '3');
-INSERT INTO `t_blog_tags` VALUES (66, 4, '6');
-INSERT INTO `t_blog_tags` VALUES (74, 7, '10');
-INSERT INTO `t_blog_tags` VALUES (75, 8, '11');
-INSERT INTO `t_blog_tags` VALUES (76, 8, '12');
-INSERT INTO `t_blog_tags` VALUES (77, 8, '13');
+/*Data for the table `t_blog_tags` */
 
--- ----------------------------
--- Table structure for t_comment
--- ----------------------------
+insert  into `t_blog_tags`(`id`,`tag_id`,`blog_id`) values (80,9,'13'),(81,9,'13'),(82,9,'13'),(83,9,'14'),(84,9,'14'),(85,9,'15'),(86,9,'16'),(87,9,'16'),(88,9,'14'),(89,9,'17'),(90,10,'18'),(92,10,'19'),(93,10,'18'),(94,10,'18'),(95,10,'19');
+
+/*Table structure for table `t_comment` */
+
 DROP TABLE IF EXISTS `t_comment`;
-CREATE TABLE `t_comment`  (
+
+CREATE TABLE `t_comment` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `nickname` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `email` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `content` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `avatar` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `create_time` datetime NULL DEFAULT NULL,
-  `blog_id` bigint(20) NULL DEFAULT NULL,
-  `parent_comment_id` bigint(20) NULL DEFAULT NULL,
-  `admincomment` int(11) NULL DEFAULT NULL,
+  `nickname` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `content` varchar(255) DEFAULT NULL,
+  `avatar` varchar(255) DEFAULT NULL,
+  `create_time` datetime DEFAULT NULL,
+  `blog_id` bigint(20) DEFAULT NULL,
+  `parent_comment_id` bigint(20) DEFAULT NULL,
+  `admincomment` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
--- ----------------------------
--- Records of t_comment
--- ----------------------------
-INSERT INTO `t_comment` VALUES (1, '小白', 'bai@qq.com', '小白的评论', '/images/avatar.jpg', '2020-03-15 21:28:13', 4, -1, NULL);
-INSERT INTO `t_comment` VALUES (2, '小红', 'hong@qq.com', '小红的评论', '/images/avatar.jpg', '2020-03-15 21:35:02', 4, -1, NULL);
-INSERT INTO `t_comment` VALUES (5, '小蓝', 'lan@qq.com', '小蓝的评论', '/images/avatar.jpg', '2020-03-16 15:04:24', 4, -1, NULL);
-INSERT INTO `t_comment` VALUES (7, '朱一鸣', '691639910@qq.com', '博主的评论', 'http://5b0988e595225.cdn.sohucs.com/images/20181103/feaa7d14883047fb81bbaa16f681f583.jpeg', '2020-03-16 15:11:07', 2, -1, 1);
-INSERT INTO `t_comment` VALUES (8, '安东尼', '2333@qq.com', '不论是我的世界车水马龙繁华盛世 还是它们都瞬间消失化为须臾 我都会坚定地走向你 不慌张 不犹豫', '/images/avatar.jpg', '2020-03-24 17:41:17', 11, -1, 0);
+/*Data for the table `t_comment` */
 
--- ----------------------------
--- Table structure for t_tag
--- ----------------------------
+/*Table structure for table `t_tag` */
+
 DROP TABLE IF EXISTS `t_tag`;
-CREATE TABLE `t_tag`  (
+
+CREATE TABLE `t_tag` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
--- ----------------------------
--- Records of t_tag
--- ----------------------------
-INSERT INTO `t_tag` VALUES (3, '前端');
-INSERT INTO `t_tag` VALUES (4, '后端');
-INSERT INTO `t_tag` VALUES (5, 'springboot');
-INSERT INTO `t_tag` VALUES (6, 'java');
-INSERT INTO `t_tag` VALUES (7, 'javase');
-INSERT INTO `t_tag` VALUES (8, '杂谈');
+/*Data for the table `t_tag` */
 
--- ----------------------------
--- Table structure for t_type
--- ----------------------------
+insert  into `t_tag`(`id`,`name`) values (9,'计算机网络'),(10,'操作系统');
+
+/*Table structure for table `t_type` */
+
 DROP TABLE IF EXISTS `t_type`;
-CREATE TABLE `t_type`  (
+
+CREATE TABLE `t_type` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
--- ----------------------------
--- Records of t_type
--- ----------------------------
-INSERT INTO `t_type` VALUES (1, '学习方法');
-INSERT INTO `t_type` VALUES (3, '娱乐方法');
-INSERT INTO `t_type` VALUES (4, '钓鱼方法');
-INSERT INTO `t_type` VALUES (5, '哈哈方法');
-INSERT INTO `t_type` VALUES (6, '动漫方法');
+/*Data for the table `t_type` */
 
--- ----------------------------
--- Table structure for t_user
--- ----------------------------
+insert  into `t_type`(`id`,`name`) values (7,'面试');
+
+/*Table structure for table `t_user` */
+
 DROP TABLE IF EXISTS `t_user`;
-CREATE TABLE `t_user`  (
+
+CREATE TABLE `t_user` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `nickname` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `username` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
-  `password` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
-  `email` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `avatar` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `type` int(10) NULL DEFAULT NULL,
-  `create_time` datetime NULL DEFAULT NULL,
-  `update_time` datetime NULL DEFAULT NULL,
+  `nickname` varchar(255) DEFAULT NULL,
+  `username` varchar(255) NOT NULL DEFAULT '',
+  `password` varchar(255) NOT NULL DEFAULT '',
+  `email` varchar(255) DEFAULT NULL,
+  `avatar` varchar(255) DEFAULT NULL,
+  `type` int(10) DEFAULT NULL,
+  `create_time` datetime DEFAULT NULL,
+  `update_time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
--- ----------------------------
--- Records of t_user
--- ----------------------------
-INSERT INTO `t_user` VALUES (1, '朱一鸣', '朱一鸣', 'e10adc3949ba59abbe56e057f20f883e', '691639910@qq.com', 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1584367404804&di=070c78aac95428c480b480a87b534e96&imgtype=0&src=http%3A%2F%2Fbbs.cnlinfo.net%2Fup%2Ftou%2F150611164743.jpg', 1, '2020-03-08 18:25:26', NULL);
+/*Data for the table `t_user` */
 
-SET FOREIGN_KEY_CHECKS = 1;
+insert  into `t_user`(`id`,`nickname`,`username`,`password`,`email`,`avatar`,`type`,`create_time`,`update_time`) values (2,'管理员','CodeRookie','96e79218965eb72c92a549dd5a330112','17633882284@163.com','https://iknow-pic.cdn.bcebos.com/b17eca8065380cd7aed7bf64a344ad3458828169',1,'2020-05-01 12:12:12',NULL);
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
