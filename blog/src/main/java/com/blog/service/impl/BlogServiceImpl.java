@@ -56,7 +56,12 @@ public class BlogServiceImpl implements BlogService {
 
     @Override
     public List<Blog> getAllRecommendBlog() {
-        return blogDao.getAllRecommendBlog();
+        List<Blog> blogs=new ArrayList<>();
+        List<Blog> blogs1= blogDao.getAllRecommendBlog();
+        for (int i=0;i<8;i++){
+            blogs.add(blogs1.get(i));
+        }
+        return blogs;
     }
 
     @Override

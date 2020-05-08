@@ -31,9 +31,9 @@ public class IndexController {
     private TagService tagService;
 
     @GetMapping("/")//默认访问
-    public String toIndex(@RequestParam(required = false,defaultValue = "1",value = "pagenum")int pagenum, Model model){
+    public String toIndex(@RequestParam(required = false,defaultValue = "1",value = "pageNum")int pageNum, Model model){
 
-        PageHelper.startPage(pagenum, 8);
+        PageHelper.startPage(pageNum, 5);
         List<Blog> allBlog = blogService.getIndexBlog();
         List<Type> allType = typeService.getBlogType();  //获取博客的类型(联表查询)
         List<Tag> allTag = tagService.getBlogTag();  //获取博客的标签(联表查询)
